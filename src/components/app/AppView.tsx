@@ -26,7 +26,7 @@ function Balances({ account }: { account: Account }) {
   return (
     <div className="card p-5 sm:p-6">
       <p className="text-sm text-muted">Vault balance</p>
-      <p className="display mt-1 text-4xl">{usdText(usd)}</p>
+      <p className="display mt-2 text-[3.25rem]">{usdText(usd)}</p>
       <p className="mt-1 text-sm text-muted">
         Signed in as <span className="mono">{shortAddress(account.wallet)}</span> · fee {account.fee.feeBps / 100}%
       </p>
@@ -66,7 +66,7 @@ export function AppView() {
   if (!connected || !signedIn) {
     return (
       <div className="card mx-auto max-w-lg p-6 text-center sm:p-10">
-        <h1 className="h2">Open your vault account</h1>
+        <h1 className="display text-[clamp(2.2rem,4vw,3.2rem)]">Open your vault account</h1>
         <p className="mt-3 text-muted">
           {connected ? "Sign a message to prove this wallet is yours. It costs nothing and moves no funds." : `Connect the wallet you trade from. ${SITE.name} keeps a balance for it inside the shared vault.`}
         </p>

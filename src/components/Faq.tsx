@@ -1,4 +1,5 @@
 import { SITE } from "@/config/site";
+import { PlusIcon } from "./icons";
 
 export const FAQ: { q: string; a: string }[] = [
   {
@@ -41,11 +42,14 @@ export const FAQ: { q: string; a: string }[] = [
 
 export function Faq({ items = FAQ }: { items?: { q: string; a: string }[] }) {
   return (
-    <div className="faq">
+    <div className="faq divide-y divide-line border-y border-line">
       {items.map((item) => (
-        <details key={item.q}>
-          <summary>{item.q}</summary>
-          <p>{item.a}</p>
+        <details key={item.q} className="group">
+          <summary className="flex items-center justify-between gap-6 rounded-lg py-5 text-[1.25rem] font-bold tracking-[-0.01em]">
+            {item.q}
+            <PlusIcon className="faq-plus size-6 shrink-0" />
+          </summary>
+          <p className="max-w-[42rem] pb-6 text-[1.0625rem] leading-relaxed">{item.a}</p>
         </details>
       ))}
     </div>

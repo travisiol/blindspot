@@ -10,7 +10,8 @@ export default function TokenPage() {
   const share = buybackShareBps() / 100;
   return (
     <main className="shell pt-10 sm:pt-14">
-      <h1 className="h2">{SITE.ticker}</h1>
+      <p className="eyebrow">The token</p>
+      <h1 className="display mt-3 text-[clamp(2.6rem,5.75vw,5.2rem)]">{SITE.ticker}</h1>
       <p className="mt-4 max-w-3xl text-xl">
         Every swap made from the vault pays a {fee}% fee; {share}% of that fee buys {SITE.ticker} on the market, and each buyback is listed below with its
         transaction.

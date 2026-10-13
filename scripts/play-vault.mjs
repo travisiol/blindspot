@@ -208,11 +208,10 @@ async function main() {
   check("reserves: users covered", Boolean(await waitFor(`document.body.innerText.includes("Yes, every token")`)));
   await shot("play-5-reserves");
 
-  // the public side
-  await cdp.send("Page.navigate", { url: `${base}/` });
-  const feed = await waitFor(`(() => { const t = document.querySelector(".public-feed")?.innerText; return t && t.includes("Transfer") ? t : null; })()`);
-  check("home: trackers see the vault's transfers, all as the vault", Boolean(feed && feed.includes("Transfer in") && feed.includes("Transfer out")), (feed ?? "").split("\n").slice(3, 7).join(" / "));
-  await js(`document.querySelector(".public-feed").scrollIntoView({ block: "center" })`);
+  // the public side, on the same page
+  const feed = await waitFor(`(() => { const t = document.body.innerText; return t.includes("Transfer in") && t.includes("Transfer out") ? "vault feed lists Transfer in + Transfer out" : null; })()`);
+  check("reserves: trackers see the vault's transfers, all as the vault", Boolean(feed), feed ?? "");
+  await js(`[...document.querySelectorAll("h2")].find((h) => h.innerText === "What trackers see")?.scrollIntoView({ block: "center" })`);
   await sleep(800);
   await shot("play-6-trackers");
   ws.close();
